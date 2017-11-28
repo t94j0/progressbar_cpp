@@ -10,16 +10,21 @@ I'm trying to learn how to use C++ better, so I'm rewriting some of my Go tools 
 	* Choose a bar with or without a maximum
 		```c++
 		// No maximum
-		ProgressBar p(std::cout, "Test")`
+		ProgressBar p("Test")`
 		```
 		
 		```c++
 		// Maximum of 400
-		ProgressBar p(std::cout, "Test", 400)`
+		ProgressBar p("Test", 400)`
 		```
 2. Increment the progress bar
 	```c++
 	p.increment();
+	```
+3. Print the ProgressBar
+
+	```c++
+	std::cout << p;
 	```
 
 # Example
@@ -27,13 +32,14 @@ I'm trying to learn how to use C++ better, so I'm rewriting some of my Go tools 
 ```c++
 #include <iostream>
 #include <unistd.h>
-#include "ProgressBar.cpp"
+#include "ProgressBar.hpp"
 
 int main() {
         const unsigned int max = 4000;
-        ProgressBar p (std::cout, "Test");
+        ProgressBar p ("Test");
         for (int i = 0; i < max; i++) {
                 p.increment();
+                std::cout << p;
                 usleep(1000);
         }
         std::cout << "\n";
